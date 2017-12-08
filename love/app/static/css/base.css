@@ -1,0 +1,19 @@
+body {
+    background-image: url("http://p0.so.qhimgs1.com/t015a77a85e558fdaf4.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.text {
+    color: white;
+}
+
+#text {
+    color: white;
+}
+
+.button {
+    height: 50px;
+    width: 188px;
+    background-color: tomato;
+}

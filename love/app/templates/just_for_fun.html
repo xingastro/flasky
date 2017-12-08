@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block page_content %}
+    <style>
+        * {
+            padding: 0px;
+        }
+
+        .main {
+            margin-left: 300px;
+            margin-top: 50px;
+        }
+
+        .hr {
+            margin-left: 10px;
+        }
+
+        .start {
+            height: 50px;
+            width: 200px;
+        }
+
+        .stop {
+            height: 50px;
+            width: 200px;
+        }
+
+        #choice {
+            background-color: green;
+            width: 400px;
+            height: 0px;
+            padding: 40px;
+            color: #ffffff;
+        }
+    </style>
+    <div><H3 class="text">测试你多久后就能找到对象，听说很准的！（有对象的就别来凑热闹了， 这是属于单身狗的狂欢）</H3></div>
+    <div><hr class="hr"></div>
+    <div class="main">
+        <div id="choice" onload="choice()"></div>
+        <br/>
+        <br/>
+        <button onclick="choice()" class="start">开始</button>
+        <button onclick="stop()" class="stop">停止</button>
+
+
+        <script language="JavaScript">
+            var time = new Array("1天", "一个星期", "找不到", "一个月", "一年", "99天", "365天", "1分钟");
+            var i = 0;
+            var t;
+
+            function choice() {
+                document.getElementById("choice").innerHTML = time[i];
+                i += 1;
+                if (i == time.length) {
+                    i = 0;
+                }
+                t = setTimeout("choice()", 100);
+            }
+
+            function stop() {
+                clearTimeout(t);
+                if (document.getElementById("choice").innerHTML == "找不到") {
+                    alert("别想了， 你找不到的!");
+                }
+                else
+                    alert("你" + document.getElementById("choice").innerHTML + "后就会找到对象!");
+            }
+        </script>
+    </div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+
+{% block page_content %}
+    {{ super() }}
+    {% if not session['login_stat'] %}
+    <div class="text" id="tor" title="点我消失">
+        <h2>已有帐号<a href="{{ url_for('login') }}" title="登录">登录</a></h2>
+        <h2>以<a href="{{ url_for('tourist') }}" title="游客">游客</a>身份访问</h2>
+        <hr style="height: 10px; border-top: 5px ridge deepskyblue">
+    </div>
+    {% endif %}
+    <div class="moods">
+        {% if moods %}
+            {% for mood in moods %}
+                <div class="mood">
+                    {% if mood['master_sex'] == 'male' %}
+                        <div class="master">
+                            <a href="{{ url_for('entry', id=mood['id']) }}"><h1
+                                    style="color: deepskyblue">{{ mood['master'] }}</h1></a>
+                        </div>
+                    {% else %}
+                        <div class="master">
+                            <a href="{{ url_for('entry', id=mood['id']) }}"><h1
+                                    style="color: #f05b72">{{ mood['master'] }}</h1></a>
+                        </div>
+                    {% endif %}
+                    <div class="text">
+                        <h3>{{ mood['content'] }}</h3>
+                    </div>
+                    <div class="others">
+                        <ul style="color: darkgray">
+                            <li>浏览次数:  {{ mood['browse_counter'] }}</li>
+                            <li>点击次数： {{ mood['good_counter'] }}</li>
+                            <li>{{ mood['birthday'] }}</li>
+                        </ul>
+                    </div>
+                </div>
+                <h5 style="color: aqua">------------------------我是萌萌哒的分割线-------------------------</h5>
+            {% endfor %}
+        {% else %}
+            <h2>鸟都没有</h2>
+        {% endif %}
+    </div>
+
+{% endblock %}

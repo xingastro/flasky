@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<form onsubmit="return check()" name="main" method="post">
+    <input type="text" name="userName">
+    <input type="password" name="password">
+    <input type="submit">
+</form>
+<script type="text/javascript">
+        function check() {
+            var userName = document.forms['main']['userName'].value;
+            var passwd = document.forms['main']['password'].value;
+            if (!userName){
+                alert('please input your username');
+                return false;
+            } else if(!passwd){
+                alert("please input your password");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

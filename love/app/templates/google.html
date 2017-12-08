@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}{{ super() }}{% endblock %}
+
+{% block page_content %}
+    <style>
+        body {
+            background-image: url("https://ss0.bdstatic.com/l4oZeXSm1A5BphGlnYG/skin/515.jpg");
+            background-color: #404040;
+            background-size: cover;
+        }
+
+        .main {
+            /*
+            * margin: 上 右 下 左
+            * margin: 垂直 水平
+            * margin: 全部
+            **/
+            margin: 100px 280px;
+        }
+
+        .image {
+            padding-left: 140px;
+        }
+
+        .input {
+            width: 580px;
+            height: 40px;
+            margin-top: 20px;
+        }
+
+        .submit {
+            background-color: palegoldenrod;
+            color: black;
+            font-family: Ubuntu;
+            height: 36px;
+            width: 90px;
+            margin-left: 190px;
+            margin-top: 30px;
+        }
+
+        .reset {
+            background-color: palegoldenrod;
+            color: black;
+            font-family: Dialog;
+            height: 36px;
+            width: 90px;
+            margin-left: 0px;
+            margin-top: 30px;
+        }
+    </style>
+
+    <div class="main">
+        <img src="../static/images/googlelogo.png" class="image">
+        <form action="{{ url_for('google') }}" method="post">
+            <input type="text" class="input" name="q">
+            <input type="submit" class="submit" value="google" title="搜索">
+            <input type="reset" class="reset" value="reset" title="重置">
+        </form>
+    </div>
+{% endblock %}

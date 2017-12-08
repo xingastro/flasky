@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}{{ super() }}{% endblock %}
+    {% block page_content %}
+        <div class="login">
+            <form action="/login" method="post" name="main" onsubmit="return check()">
+                <h3 class="text">昵称:</h3>
+                <h2><input title="昵称" type="text" class="input" name="name"></h2>
+                <h3 class="text">密码:</h3>
+                <h2><input title="密码" type="password" class="input" name="password"></h2>
+                <h2>
+                    <input type="submit" class="button" value="提交" style="color: white;border-width: 0">
+                    <input type="reset" class="button" value="重置" style="color: white; border-width: 0">
+                </h2>
+            </form>
+        </div>
+        <script type="text/javascript">
+            function check() {
+                var userName = document.forms['main']['name'].value;
+                var passWd = document.forms['main']['password'].value;
+                if(!userName){
+                    alert("用户名不能为空");
+                    return false;
+                } else if(!passWd){
+                    alert("密码不能为空");
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    {% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+    <style type="text/css">
+
+        .input {
+            font-family: Ubuntu;
+        }
+
+        .hr {
+            width: auto;
+        }
+
+        .submit {
+            margin-left: 0px;
+            border: none;
+            color: whitesmoke;
+            width: 300px;
+            height: 50px;
+            background-color: #36c;
+        }
+
+        .reset {
+            border: none;
+            color: whitesmoke;
+            width: 300px;
+            height: 50px;
+            background-color: #36c;
+            font-family: 'Ubuntu', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
+        }
+    </style>
+    <script type="text/javascript">
+    function checkFeedback(){
+        var feedback = document.forms['main']['feedback'].value;
+        if(!feedback){
+            alert("请先输入内容");
+            return false;
+        }
+        return true;
+    }
+    </script>
+    <div class="main">
+        <form action="/balabala" method="post" name="main" onsubmit="return checkFeedback()">
+            <h3><textarea name="feedback" class="input" rows="4" cols="50" placeholder="说说你的建议吧 :-)"></textarea></h3>
+           
+            <input type="submit" class="submit" value="提交">
+            <input type="reset" class="reset" value="重置">
+        </form>
+    </div>
+
+    {% if feedbacks %}
+        {% for feedback in feedbacks %}
+            <h3 class="text">{{ feedback[0] }}</h3>
+            <p style="color: aqua">-----------------我是萌萌哒的分割线-----------------</p>
+            <br>
+        {% endfor %}
+    {% else %}
+        <hr />
+        <p class="text">还没有反馈呢，快去反馈吧^_~</p>
+    {% endif %}
+{% endblock %}

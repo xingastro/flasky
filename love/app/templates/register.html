@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}{{ super() }}{% endblock %}
+
+{% block page_content %}
+    <form action="/register" name="info-form" onsubmit="return validateForm()" method="post">
+        <fieldset>
+            <legend class="text">个人信息</legend>
+            <h3 class="text">昵称</h3>
+            <h2><input type="text" name="name" id="userName" placeholder="必填"></h2>
+            <h3 class="text">密码</h3>
+            <h2><input type="password" name="password" id="userPasswd" placeholder="必填"></h2>
+            <h3 class="text">性别</h3>
+            <h2 class="text">
+                <input type="radio" name="sex" id="male" value="male">男
+                <input type="radio" name="sex" id="female" value="female">女</h2>
+            <h3 class="text">个人说明</h3>
+            <h2><textarea rows="2" cols="30" name="info"></textarea>
+            </h2>>
+            <h2>
+                <input type="submit" class="button" id="submit" onclick="" value="提交"
+                       style="color: white;border-width: 0">
+                <input type="reset" class="button" value="重置" style="color: white;border-width: 0">
+            </h2>
+        </fieldset>
+    </form>
+
+    <script type="text/javascript">
+       function validateForm() {
+           var userName = document.forms["info-form"]["name"].value;
+           var passWd = document.forms["info-form"]["password"].value;
+           var sex = document.forms["info-form"]["sex"].value;
+           if(!userName){
+               alert("用户名不能为空");
+               return false;
+           } else if(!passWd) {
+               alert("密码不能为空");
+               return false;
+           } else if(!sex){
+               alert("性别不能为空");
+               return false;
+           }
+           return true;
+       }
+    </script>
+{% endblock %}

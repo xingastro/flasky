@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+    <div class="mood">
+        <h1 style="color: deepskyblue">{{ mood['master'] }}</h1>
+        <h3 class="text">{{ mood['content'] }}</h3>
+        <div style="color: gainsboro">
+            <p>浏览次数：  {{ mood['browse_counter'] }}</p>
+            <p>点击次数：  {{ mood['good_counter'] }}</p>
+            <p>{{ mood['birthday'] }}</p>
+        </div>
+        <hr>
+    </div>
+
+    <script type="text/javascript">
+    function check(){
+        var comment = document.forms['main']['comment'].value;
+        if(!$.trim(comment)){
+            alert("请先输入内容");
+            return false;
+        }
+        return true;
+    }
+    </script>
+    <div class="comment">
+        <form action="{{ url_for('entry', id=id) }}" name="main" onsubmit="return check()" method="post">
+            <fieldset>
+                <legend class="text">评论</legend>
+                <h2><textarea rows="2" cols="40" name="comment">
+            </textarea></h2>
+                <h2><input type="submit" class="button" value="评论" style="color: white">
+                    <input type="reset" class="button" value="重置" style="color: white"></h2>
+            </fieldset>
+            <hr>
+        </form>
+    </div>
+
+    <div class="comments">
+        {% if comments %}
+            {% for comment in comments %}
+                {% if comment['sex'] == 'male' %}
+                    <h3 style="color: deepskyblue">{{ comment['master'] }}:</h3>
+                {% else %}
+                    <h3 style="color: #cb4437">{{ comment['master'] }}:</h3>
+                {% endif %}
+                <h5 class="text">{{ comment['content'] }}</h5>
+                <ul style="color: whitesmoke">
+                    <li>{{ comment['good_counter'] }}</li>
+                    <li>{{ comment['birthday'] }}</li>
+                </ul>
+                <p style="color: aqua">---------------**我是萌萌哒的分割线**-----------------</p>
+            {% endfor %}
+        {% else %}
+            <h6 class="text">还没有评论呢，赶快去评论吧！^_~</h6>
+        {% endif %}
+    </div>
+{% endblock %}

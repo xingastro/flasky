@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block navTitle_left %}
+{% endblock %}
+
+{% block navTitle %}
+    <li><a href="{{ url_for('login') }}">登录</a></li>
+    <li><a href="{{ url_for('logout') }}">注销</a></li>
+    <li><a href="{{ url_for('balabala') }}">balabala</a></li>
+    <li><a href="{{ url_for('google') }}" title="google搜索">google</a></li>
+    <li><a href="{{ url_for('just_for_fun') }}" title="测一测你多久能找到对象，听说很准的">测一测</a></li>
+{% endblock %}
+
+{% block page_content %}
+    <style type="text/css">
+        .main {
+            margin: 30px 50px;
+        }
+
+        .input {
+            font-family: Ubuntu;
+        }
+        
+        .hr {
+            width: auto;
+        }
+        .submit {
+            margin-left: 0px;
+            border: none;
+            color: whitesmoke;
+            width: 300px;
+            height: 50px;
+            background-color: #36c;
+        }
+        .reset {
+            border: none;
+            color: whitesmoke;
+            width: 300px;
+            height: 50px;
+            background-color: #36c;
+            font-family:'Ubuntu', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
+        }
+    </style>
+    <script type="text/javascript">
+    function check() {
+        var content = document.forms['main']['content'].value;
+        if(!content){
+            alert("请先输入内容");
+            return false;
+        }
+        return true;
+    }
+    </script>
+    <div class="main">
+        <form action="/mood" method="post" name="main" onsubmit="return check()">
+            <h3><textarea name="content" class="input" rows="4" cols="50" placeholder="说说你的心情吧 :-)"></textarea></h3>
+            <hr class="hr"/>
+            <input type="submit" class="submit" value="提交">
+            <input type="reset" class="reset" value="重置">
+        </form>
+    </div>
+{% endblock %}

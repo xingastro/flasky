@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}LOVE{% endblock %}
+
+{% block navTitle_left %}
+{% endblock %}
+
+{% block navTitle %}
+    <li><a href="{{ url_for('mood') }}">心情</a></li>
+    <li><a href="{{ url_for('logout') }}">注销</a></li>
+    <li><a href="{{ url_for('balabala') }}">balabala</a></li>
+    <li><a href="{{ url_for('google') }}" title="google搜索">google</a></li>
+    <li><a href="{{ url_for('just_for_fun') }}" title="测一测你多久能找到对象，听说很准的">测一测</a></li>
+{% endblock %}
+
+
+
+
+{% block content %}
+    {{ super() }}
+    <div class="personal-info" style="color: white">
+        <h2>{{ session['name'] }}</h2>
+        <h3>{{ personal_info }}</h3>
+        <hr>
+    </div>
+    <div class="moods" id="text">
+        {% if moods %}
+            {% for mood in moods %}
+                <a href="{{ url_for('entry', id=mood['id']) }}">
+                    <div class="mood">
+                        {% if mood['master_sex'] == 'female' %}
+                            <div class="master">
+                                <h1 style="color: #f05b72">{{ mood['master'] }}</h1>
+                            </div>
+                        {% else %}
+                            <div class="master">
+                                <h1 style="color: deepskyblue">{{ mood['master'] }}</h1>
+                            </div>
+                        {% endif %}
+                        <div class="text">
+                            <h4>{{ mood['content'] }}</h4>
+                        </div>
+                        <div class="others">
+                            <ul style="color: darkgray">
+                                <li>浏览次数: {{ mood['browse_counter'] }}</li>
+                                <li>点击次数： {{ mood['good_counter'] }}</li>
+                                <li>{{ mood['birthday'] }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </a>
+                <p style="color: aqua">--------------我是萌萌哒的分割线-----------------</p>
+            {% endfor %}
+        {% else %}
+            <p class="text">There is nothing like 127.0.0.1</p>
+            <p class="text">鸟都没有， 快去发<a href="{{ url_for('mood') }}"> 心情</a>吧^_~</p>
+        {% endif %}
+    </div>
+{% endblock %}

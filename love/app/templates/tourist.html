@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+
+{% block page_content %}
+    {{ super() }}
+    <div class="text" id="tor" title="点我消失">
+        <h2>以游客身份访问会导致你下一次访问时无法查询以前的数据，为了您的方便，请
+            <a href="{{ url_for('login') }}" title="登录">登录</a>或
+            <a href="{{ url_for('register') }}" title="注册">注册</a></h2>
+        <hr style="height: 10px; border-top: 5px ridge deepskyblue">
+    </div>
+    <div class="moods" id="text">
+        {% if moods %}
+            {% for mood in moods %}
+                <a href="{{ url_for('entry', id=mood['id']) }}">
+                    <div class="mood">
+                        {% if mood['master_sex'] == 'male' %}
+                            <div class="master">
+                                <h1 style="color: deepskyblue">{{ mood['master'] }}</h1>
+                            </div>
+                        {% else %}
+                            <div class="master">
+                                <h1 style="color: #cb4437">{{ mood['master'] }}</h1>
+                            </div>
+                        {% endif %}
+                        <div class="text">
+                            <h4>{{ mood['content'] }}</h4>
+                        </div>
+                        <div class="others">
+                            <ul style="color: darkgray">
+                                <li>浏览次数: {{ mood['browse_counter'] }}</li>
+                                <li>点击次数： {{ mood['good_counter'] }}</li>
+                                <li>{{ mood['birthday'] }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </a>
+                <p style="color: aqua">--------------我是萌萌哒的分割线-----------------</p>
+            {% endfor %}
+        {% else %}
+            <h2>鸟都没有</h2>
+        {% endif %}
+    </div>
+{% endblock %}

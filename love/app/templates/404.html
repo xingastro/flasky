@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+    <h2 class="text">亲，您搜索的页面不存在哦 ：-（</h2>
+    <button class="btn" onclick="back()">点我返回上一页</button>
+
+    <style type="text/css">
+        .btn {
+            position: relative;
+            background-color: #4CAF50;
+            border: none;
+            font-size: 28px;
+            color: #FFFFFF;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+            text-decoration: none;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .button:after {
+            content: "";
+            background: #90EE90;
+            display: block;
+            position: absolute;
+            padding-top: 300%;
+            padding-left: 350%;
+            margin-left: -20px !important;
+            margin-top: -120%;
+            opacity: 0;
+            transition: all 0.8s
+        }
+
+        .button:active:after {
+            padding: 0;
+            margin: 0;
+            opacity: 1;
+            transition: 0s
+        }
+    </style>
+
+    <script type="text/javascript">
+        function back() {
+            history.back();
+        }
+    </script>
+{% endblock %}
